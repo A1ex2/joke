@@ -19,7 +19,7 @@ void main() async {
           AndroidFlutterLocalNotificationsPlugin>()
       ?.requestPermission();
 
-  await AndroidAlarmManager.oneShot(const Duration(seconds: 5), 9999, notify);
+  // await AndroidAlarmManager.oneShot(const Duration(seconds: 5), 9999, notify);
 }
 
 @pragma('vm:entry-point')
@@ -93,10 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       joke = value;
                       _load = false;
 
-                      NotificationServices notificationServices =
-                          NotificationServices();
-                      notificationServices.initialiseNotifications();
-                      notificationServices.sendNotification("Joke", value);
+                      // NotificationServices notificationServices =
+                      //     NotificationServices();
+                      // notificationServices.initialiseNotifications();
+                      // notificationServices.sendNotification("Joke", value);
                     });
                   });
                 },
