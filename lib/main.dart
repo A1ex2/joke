@@ -9,6 +9,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AndroidAlarmManager.initialize();
 
+  runApp(const MyApp());
+
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -17,11 +19,10 @@ void main() async {
           AndroidFlutterLocalNotificationsPlugin>()
       ?.requestPermission();
 
-  runApp(const MyApp());
-
-  // await AndroidAlarmManager.oneShot(const Duration(minutes: 1), 9999, notify);
+  await AndroidAlarmManager.oneShot(const Duration(seconds: 5), 9999, notify);
 }
 
+@pragma('vm:entry-point')
 void notify() async {
   JokeConnected.getJoke().then((value) {
     NotificationServices notificationServices = NotificationServices();
@@ -91,6 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       joke = value;
                       _load = false;
+
+                      NotificationServices notificationServices =
+                          NotificationServices();
+                      notificationServices.initialiseNotifications();
+                      notificationServices.sendNotification("Joke", value);
                     });
                   });
                 },
