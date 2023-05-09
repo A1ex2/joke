@@ -18,8 +18,6 @@ void main() async {
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.requestPermission();
-
-  // await AndroidAlarmManager.oneShot(const Duration(seconds: 5), 9999, notify);
 }
 
 @pragma('vm:entry-point')
@@ -28,7 +26,6 @@ void notify() async {
     NotificationServices notificationServices = NotificationServices();
     notificationServices.initialiseNotifications();
     notificationServices.sendNotification("Joke", value);
-    // print(value);
   });
 }
 
@@ -92,11 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       joke = value;
                       _load = false;
-
-                      // NotificationServices notificationServices =
-                      //     NotificationServices();
-                      // notificationServices.initialiseNotifications();
-                      // notificationServices.sendNotification("Joke", value);
                     });
                   });
                 },
@@ -105,26 +97,38 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 30),
                 ),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () async {
                   await AndroidAlarmManager.oneShot(
-                      const Duration(minutes: 1), 9999, notify);
+                      const Duration(minutes: 1), 1111, notify);
                 },
                 child: const Text(
-                  "Собщить через 1 минуту",
+                  "Сообщить через 1 минуту",
                   style: TextStyle(fontSize: 30),
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () async {
                   await AndroidAlarmManager.oneShot(
-                      const Duration(minutes: 30), 9999, notify);
+                      const Duration(minutes: 30), 3030, notify);
                 },
                 child: const Text(
-                  "Собщить через 30 минут",
+                  "Сообщить через 30 минут",
+                  style: TextStyle(fontSize: 30),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () async {
+                  await AndroidAlarmManager.oneShot(
+                      const Duration(minutes: 60), 6060, notify);
+                },
+                child: const Text(
+                  "Сообщить через 1 час",
                   style: TextStyle(fontSize: 30),
                   textAlign: TextAlign.center,
                 ),

@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:joke/main.dart';
 
 class NotificationServices {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   final AndroidInitializationSettings _androidInitializationSettings =
-      const AndroidInitializationSettings("ic_launcher");
+      const AndroidInitializationSettings("mipmap/ic_launcher");
 
   void initialiseNotifications() async {
     InitializationSettings initializationSettings =
